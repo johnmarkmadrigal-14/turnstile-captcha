@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v1/api.js"
+    async defer
+  ></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div
+    class="cf-turnstile"
+    data-sitekey="0x4AAAAAAE9w3l3mvT5wLxKj"
+    data-callback="onSuccess"
+    data-error-callback="onError"
+    data-theme="light"
+  ></div>
+  <script>
+    function onSuccess(token) {
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({ success: true, token: token })
+      );
+    }
+    function onError() {
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({ success: false, token: null })
+      );
+    }
+  </script>
+</body>
+</html>
